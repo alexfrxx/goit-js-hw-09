@@ -18,8 +18,11 @@ function addData(obj) {
   });
 }
 
-function checkStorage() {
+function checkStorage(obj) {
   const data = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
+  obj.email = data.email;
+  obj.message = data.message;
+
   emailInput.value = data.email ?? '';
   messageInput.value = data.message ?? '';
 }
@@ -38,11 +41,11 @@ function validateForm(obj) {
     obj.email = '';
     obj.message = '';
 
-    localStorage.clear();
+    localStorage.removeItem('feedback-form-state');
     form.reset();
   });
 }
 
 addData(formData);
-checkStorage();
+checkStorage(formData);
 validateForm(formData);
