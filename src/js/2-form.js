@@ -46,6 +46,6 @@ function validateForm(obj) {
   });
 }
 
-addData(formData);
 checkStorage(formData);
+addData(formData);
 validateForm(formData);
