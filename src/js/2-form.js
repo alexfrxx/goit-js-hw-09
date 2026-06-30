@@ -36,7 +36,7 @@ function validateForm(obj) {
       return;
     }
 
-    console.log(obj);
+    console.log({ ...obj });
 
     obj.email = '';
     obj.message = '';
