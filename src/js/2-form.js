@@ -20,8 +20,8 @@ function addData(obj) {
 
 function checkStorage(obj) {
   const data = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
-  obj.email = data.email;
-  obj.message = data.message;
+  obj.email = data.email ?? '';
+  obj.message = data.message ?? '';
 
   emailInput.value = data.email ?? '';
   messageInput.value = data.message ?? '';
