@@ -11,18 +11,17 @@ const formData = {
 
 function addData(obj) {
   form.addEventListener('input', () => {
-    obj.email = emailInput.value ?? '';
-    obj.message = messageInput.value ?? '';
+    obj.email = emailInput.value.trim();
+    obj.message = messageInput.value.trim();
 
     localStorage.setItem('feedback-form-state', JSON.stringify(obj));
   });
 }
 
 function checkStorage() {
-  const data = localStorage.getItem('feedback-form-state');
-  const validData = JSON.parse(data);
-  emailInput.value = validData.email;
-  messageInput.value = validData.message;
+  const data = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
+  emailInput.value = data.email ?? '';
+  messageInput.value = data.message ?? '';
 }
 
 function validateForm(obj) {
@@ -36,9 +35,8 @@ function validateForm(obj) {
 
     console.log(obj);
 
-    Object.keys(obj).forEach(key => {
-      obj[key] = '';
-    });
+    obj.email = '';
+    obj.message = '';
 
     localStorage.clear();
     form.reset();
